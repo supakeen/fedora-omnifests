@@ -1,0 +1,16 @@
+otk.define:
+  packages:
+    buildroot:
+      include:
+        - "@core"
+      exclude: []
+
+      # `osbuild` needs the packages fully solved for its manifests. This external
+      # generates the necessary variables for further use in an `osbuild` target.
+      osbuild:
+        otk.external.osbuild-gen-depsolve-dnf4:
+          architecture: ${argument.architecture}
+          module_platform_id: f${fedora.release}
+          releasever: ${fedora.release}
+          repositories: ${fedora.repositories}
+          packages: ${packages.buildroot}

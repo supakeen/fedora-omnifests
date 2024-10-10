@@ -1,0 +1,13 @@
+otk.define:
+  fedora:
+    release: "42"
+    vendor: "fedora"
+    repositories:
+      - id: "AppStream"
+        baseurl: "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-${argument.architecture}-appstream-20240901"
+      - id: "BaseOS"
+        baseurl: "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-${argument.architecture}-baseos-20240901"
+      - id: "RT"
+        baseurl: "https://rpmrepo.osbuild.org/v2/mirror/public/el9/cs9-${argument.architecture}-rt-20240901"
+    gpgkeys:
+      - ""

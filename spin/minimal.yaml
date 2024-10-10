@@ -1,0 +1,77 @@
+# An [otk](https://github.com/osbuild/otk) omnifest to build Fedora Minimal.
+otk.version: "1"
+
+# Include the general release information.
+otk.include.release: "../release.yaml"
+
+# Let's get some general arguments out of the way; these must be passed on the
+# command line and are used to conditionally include or exclude other parts.
+otk.define:
+  argument:
+    architecture: "x86_64"
+
+# Buildroot packages are shared amongst all images and usually architecture
+# independent. Keeping the buildroot the same everywhere allows it to be
+# cached efficiently as well.
+otk.include.buildroot-packages: "../packages/buildroot/generic.yaml"
+
+# System packages end up in the operating system itself, these are dependent
+# on both architecture and spin.
+otk.include.system-packages: "../packages/system/${argument.architecture}/minimal.yaml"
+
+# Then we also need the partition tables that apply to this spin.
+otk.include.partition-tables: "../partition-tables/${argument.architecture}/minimal.yaml"
+
+# We're also going to place some custom files in the image that we need to have
+# available, these are specific to the minimal spin so let's define them here.
+otk.define.files:
+  files:
+    # The minimal spin has a kickstart file that turns on firstboot
+    kickstart: |
+      # Run initial-setup on first boot
+      # Created by osbuild
+      firstboot --reconfig
+      lang en_US.UTF-8
+
+    # For osbuild we need to generate these files into sources that can embedded
+    # in the resulting manifest so let's do that
+#    osbuild:
+#      otk.external.osbuild.gen-inline-files:
+#        inline:
+#          kickstart:
+#            contents: ${files.kickstart}
+
+# TODO
+otk.define.kernel:
+  kernel:
+    cmdline: ro
+    package:
+      otk.external.osbuild-get-dnf4-package-info:
+        packageset: ${packages.system.osbuild}
+        packagename: "kernel"
+
+# With what we have available so far we can create a target for an
+# [osbuild](https://github.com/osbuild/osbuild) manifest. Knowledge om the
+# `osbuild` manifest format is required for working with the `osbuild` target
+# but it allows fine grained control over the assembly of the eventual image.
+#
+# Each time we recompile this omnifest the target will be output with freshly
+# depsolved information.
+otk.target.osbuild:
+  pipelines:
+    # The buildroot pipeline is shared amongst all images and is usually
+    # architecture independent.
+    - otk.include: "../pipelines/buildroot/generic.yaml"
+
+    # The system pipeline assembles the operating system together, generally
+    # this can be shared but sometimes specifics apply.
+    - otk.include: "../pipelines/system/${argument.architecture}/minimal.yaml"
+
+  # osbuild needs all its sources explicitly references, these sources are
+  # in this case the RPMs that constitute the build. They are generated during
+  # the dependency solving of the packages.
+  sources:
+    otk.external.osbuild-make-depsolve-dnf4-curl-source:
+      packagesets:
+        - ${packages.buildroot.osbuild}
+        - ${packages.system.osbuild}
