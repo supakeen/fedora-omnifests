@@ -2,7 +2,20 @@ otk.define:
   packages:
     system:
       include:
-        - "kernel"
+        - "@core"
+        - NetworkManager-wifi
+        - dosfstools
+        - dracut-config-generic
+        - efibootmgr
+        - grub2-efi-x64
+        - initial-setup
+        - iwl3160-firmware
+        - iwl7260-firmware
+        - kernel
+        - libxkbcommon
+        - selinux-policy-targeted
+        - shim-x64
+        - xfsprogs
       exclude: []
 
       # `osbuild` needs the packages fully solved for its manifests. This external

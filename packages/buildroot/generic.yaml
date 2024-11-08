@@ -2,7 +2,22 @@ otk.define:
   packages:
     buildroot:
       include:
-        - "@core"
+        - coreutils
+        - dosfstools
+        - glibc
+        - glibc
+        - grub2-pc
+        - grub2-tools
+        - grub2-tools-extra
+        - grub2-tools-minimal
+        - policycoreutils
+        - python3
+        - rpm
+        - selinux-policy-targeted
+        - systemd
+        - tar
+        - xfsprogs
+        - xz
       exclude: []
 
       # `osbuild` needs the packages fully solved for its manifests. This external
