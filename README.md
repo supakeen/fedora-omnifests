@@ -9,6 +9,6 @@ to the inputs for image build tooling.
 ```
 € git clone https://github.com/supakeen/fedora-omnifests
 € cd fedora-omnifests
-€ podman run -v.:/app:z ghcr.io/osbuild/otk:latest compile -e environment/x86_64.yaml spin/minimal.yaml
+€ podman run -v.:/app:z ghcr.io/osbuild/otk:latest compile -e environments/x86_64.yaml variants/minimal.yaml
 # ... output that can be piped to `osbuild` ...
 ```
