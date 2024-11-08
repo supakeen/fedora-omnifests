@@ -5,7 +5,7 @@ otk.define:
     vendor: "fedora"
     repositories:
       - id: "fedora"
-        baseurl: "https://eu.edge.kernel.org/fedora/development/rawhide/Everything/${argument.architecture}/os"
+        baseurl: "https://eu.edge.kernel.org/fedora/development/rawhide/Everything/${environment.architecture}/os"
     gpgkeys:
       - |
         -----BEGIN PGP PUBLIC KEY BLOCK-----

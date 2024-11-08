@@ -18,7 +18,7 @@ otk.define:
       # generates the necessary variables for further use in an `osbuild` target.
       osbuild:
         otk.external.osbuild-gen-depsolve-dnf4:
-          architecture: ${argument.architecture}
+          architecture: ${environment.architecture}
           module_platform_id: f${fedora.release}
           releasever: ${fedora.release}
           repositories: ${fedora.repositories}

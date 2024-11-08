@@ -2,25 +2,19 @@
 otk.version: "1"
 
 # Include the general release information.
-otk.include.release: "../../release.yaml"
-
-# Let's get some general arguments out of the way; these must be passed on the
-# command line and are used to conditionally include or exclude other parts.
-otk.define:
-  argument:
-    architecture: "aarch64"
+otk.include.release: "../release.yaml"
 
 # Buildroot packages are shared amongst all images and usually architecture
 # independent. Keeping the buildroot the same everywhere allows it to be
 # cached efficiently as well.
-otk.include.buildroot-packages: "../../packages/buildroot/generic.yaml"
+otk.include.buildroot-packages: "../packages/buildroot/generic.yaml"
 
 # System packages end up in the operating system itself, these are dependent
 # on both architecture and spin.
-otk.include.system-packages: "../../packages/system/${argument.architecture}/minimal.yaml"
+otk.include.system-packages: "../packages/system/${environment.architecture}/minimal.yaml"
 
 # Then we also need the partition tables that apply to this spin.
-otk.include.partition-tables: "../../partition-tables/${argument.architecture}/minimal.yaml"
+otk.include.partition-tables: "../partition-tables/${environment.architecture}/minimal.yaml"
 
 # We're also going to place some custom files in the image that we need to have
 # available, these are specific to the minimal spin so let's define them here.
@@ -61,15 +55,15 @@ otk.target.osbuild:
   pipelines:
     # The buildroot pipeline is shared amongst all images and is usually
     # architecture independent.
-    - otk.include: "../../pipelines/buildroot/generic.yaml"
+    - otk.include: "../pipelines/buildroot/generic.yaml"
 
     # The system pipeline assembles the operating system together, generally
     # this can be shared but sometimes specifics apply.
-    - otk.include: "../../pipelines/system/${argument.architecture}/minimal.yaml"
+    - otk.include: "../pipelines/system/${environment.architecture}/minimal.yaml"
 
     # With the raw pipeline we take the previous system pipeline and put that
     # filesystem tree into a raw disk image
-    - otk.include: "../../pipelines/raw/${argument.architecture}/minimal.yaml"
+    - otk.include: "../pipelines/raw/${environment.architecture}/minimal.yaml"
 
     # We can then take that raw pipeline and xz it
     - name: raw-xz

@@ -1,0 +1,5 @@
+# Let's get some general arguments out of the way; these must be passed on the
+# command line and are used to conditionally include or exclude other parts.
+otk.define:
+  environment:
+    architecture: "x86_64"
