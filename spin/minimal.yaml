@@ -67,6 +67,25 @@ otk.target.osbuild:
     # this can be shared but sometimes specifics apply.
     - otk.include: "../pipelines/system/${argument.architecture}/minimal.yaml"
 
+    # With the raw pipeline we take the previous system pipeline and put that
+    # filesystem tree into a raw disk image
+    - otk.include: "../pipelines/raw/${argument.architecture}/minimal.yaml"
+
+    # We can then take that raw pipeline and xz it
+    - name: raw-xz
+      build: name:buildroot
+      stages:
+        - type: org.osbuild.xz
+          inputs:
+            file:
+              type: org.osbuild.files
+              origin: org.osbuild.pipeline
+              references:
+                name:raw:
+                  file: disk.img
+          options:
+            filename: disk.raw.xz
+
   # osbuild needs all its sources explicitly referenced, these sources are
   # in this case the RPMs that constitute the build. They are generated during
   # the dependency solving of the packages.

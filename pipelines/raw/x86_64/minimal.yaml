@@ -1,0 +1,19 @@
+name: raw
+build: name:buildroot
+stages:
+  otk.op.join:
+    values:
+      - otk.external.osbuild-make-partition-stages: ${filesystem.osbuild}
+      - - type: org.osbuild.copy
+          inputs:
+            root-tree:
+              type: org.osbuild.tree
+              origin: org.osbuild.pipeline
+              references:
+                - name:system
+          options:
+            paths:
+              - from: input://root-tree/
+                to: mount://-/
+          devices: ${filesystem.fs_options.devices}
+          mounts: ${filesystem.fs_options.mounts}
