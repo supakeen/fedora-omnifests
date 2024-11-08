@@ -12,3 +12,17 @@ to the inputs for image build tooling.
 € podman run -v.:/app:z ghcr.io/osbuild/otk:latest compile -e environments/x86_64.yaml variants/minimal.yaml
 # ... output that can be piped to `osbuild` ...
 ```
+
+# Layout
+
+## `/release.yaml`
+
+## `/variants`
+
+## `/environments`
+
+## `/package-sets`
+
+## `/partition-tables`
+
+## `/library`
