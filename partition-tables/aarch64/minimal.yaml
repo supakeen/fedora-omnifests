@@ -5,7 +5,6 @@ otk.define:
     osbuild:
       otk.external.osbuild-gen-partition-table:
         modifications:
-          ${filesystem.modifications}
         properties:
           type: gpt
           bios: true

@@ -1,17 +1,22 @@
 otk.define:
   packages:
-    buildroot:
+    system:
       include:
-        - coreutils
+        - "@core"
+        - NetworkManager-wifi
         - dosfstools
-        - glibc
-        - policycoreutils
-        - python3
-        - rpm
+        - dracut-config-generic
+        - efibootmgr
+        - grub2-efi-aa64
+        - grub2-tools
+        - initial-setup
+        - iwl3160-firmware
+        - iwl7260-firmware
+        - kernel
+        - libxkbcommon
         - selinux-policy-targeted
-        - systemd
+        - shim-aa64
         - xfsprogs
-        - xz
       exclude: []
 
       # `osbuild` needs the packages fully solved for its manifests. This external
@@ -22,4 +27,4 @@ otk.define:
           module_platform_id: f${fedora.release}
           releasever: ${fedora.release}
           repositories: ${fedora.repositories}
-          packages: ${packages.buildroot}
+          packages: ${packages.system}
