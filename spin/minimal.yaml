@@ -71,7 +71,12 @@ otk.target.osbuild:
   # in this case the RPMs that constitute the build. They are generated during
   # the dependency solving of the packages.
   sources:
-    otk.external.osbuild-make-depsolve-dnf4-curl-source:
-      packagesets:
-        - ${packages.buildroot.osbuild}
-        - ${packages.system.osbuild}
+    otk.op.join:
+      values:
+        - otk.external.osbuild-make-depsolve-dnf4-curl-source:
+            packagesets:
+              - ${packages.buildroot.osbuild}
+              - ${packages.system.osbuild}
+        - otk.external.osbuild-make-inline-source:
+            const:
+              files: ${files.osbuild.const.files}

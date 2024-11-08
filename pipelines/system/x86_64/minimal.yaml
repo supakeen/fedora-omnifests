@@ -47,20 +47,18 @@ stages:
       write_cmdline: false
       config:
         default: saved
-#  - type: org.osbuild.copy
-#    inputs:
-#      # XXX note we're only keeping the hash here since it corresponds to the reference
-#      # XXX manifest and the same in the input
-#      file-cbe2cb6e47e05af3b653e2567e9ee04ba7d9dcf8fdc2cfd15b232a0844c128f9:
-#        type: org.osbuild.files
-#        origin: org.osbuild.source
-#        references:
-#          - id: ${files.const.files.kickstart.id}
-#    options:
-#      paths:
-#        - from: input://file-cbe2cb6e47e05af3b653e2567e9ee04ba7d9dcf8fdc2cfd15b232a0844c128f9/${files.const.files.kickstart.id}
-#          to: tree:///root/anaconda-ks.cfg
-#          remove_destination: true
+  - type: org.osbuild.copy
+    inputs:
+      file-kickstart:
+        type: org.osbuild.files
+        origin: org.osbuild.source
+        references:
+          - id: ${files.osbuild.const.files.kickstart.id}
+    options:
+      paths:
+        - from: input://file-kickstart/${files.osbuild.const.files.kickstart.id}
+          to: tree:///root/anaconda-ks.cfg
+          remove_destination: true
   - type: org.osbuild.chown
     options:
       items:
