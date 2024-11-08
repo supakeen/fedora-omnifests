@@ -1,3 +1,4 @@
+# The release file contains the version and repositories to use.
 otk.define:
   fedora:
     release: "42"
