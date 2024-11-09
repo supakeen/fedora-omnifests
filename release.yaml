@@ -1,6 +1,8 @@
-# The release file contains the version and repositories to use.
+# The release file contains the version and repositories to use and thus
+# describes where content comes from.
 otk.define:
   fedora:
+    final: false
     release: "42"
     vendor: "fedora"
     repositories:
