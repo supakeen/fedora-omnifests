@@ -61,11 +61,13 @@ otk.target.osbuild:
     # this can be shared but sometimes specifics apply.
     - otk.include: "../library/osbuild/pipelines/system/${environment.architecture}/minimal.yaml"
 
-    # With the raw pipeline we take the previous system pipeline and put that
-    # filesystem tree into a raw disk image
+    # The next pipelines take the previous pipeline and convert it into a
+    # variety of output formats.
+
+    # A raw disk image
     - otk.include: "../library/osbuild/pipelines/raw/generic.yaml"
 
-    # We can then take that raw pipeline and xz it
+    # A raw disk image (compressed with xz)
     - name: raw-xz
       build: name:buildroot
       stages:
@@ -80,9 +82,10 @@ otk.target.osbuild:
           options:
             filename: disk.raw.xz
 
-    # One of the strengths of `osbuild` is its ability to have many pipelines for
-    # different outputs, lets include tar, and qcow2 as well:
+    # A qcow2 disk image
     - otk.include: "../library/osbuild/pipelines/qcow2/generic.yaml"
+
+    # A tar archive of the system directory tree
     - otk.include: "../library/osbuild/pipelines/tar/generic.yaml"
 
   # osbuild needs all its sources explicitly referenced, these sources are
