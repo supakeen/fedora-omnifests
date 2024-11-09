@@ -24,6 +24,7 @@ to the inputs for image build tooling.
     --export=raw \
     --export=raw-xz \
     --export=qcow2 \
+    --export=tar \
     manifest.json
 ```
 
