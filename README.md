@@ -4,7 +4,7 @@ This repository is used to manage the Fedora omnifests. Omnifests are the input
 format for [otk](https://github.com/osbuild/otk). `otk` compiles these omnifests
 to the inputs for image build tooling.
 
-**This repository is broken, and only an example for now.**
+**This repository is in rapid development, and only an example for now. Things can break at any time.**
 
 ```
 € git clone https://github.com/supakeen/fedora-omnifests
