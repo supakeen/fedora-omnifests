@@ -13,6 +13,20 @@ to the inputs for image build tooling.
 # ... output that can be piped to `osbuild` ...
 ```
 
+## `osbuild`
+
+```
+€ sudo osbuild \
+    --store=/home/user/cache \
+    --cache-max-size=unlimited \
+    --checkpoint='*' \
+    --output-directory=. \
+    --export=raw \
+    --export=raw-xz \
+    --export=qcow2 \
+    manifest.json
+```
+
 # Layout
 
 ## `/release.yaml`

@@ -9,9 +9,13 @@ otk.define:
         - python3
         - rpm
         - selinux-policy-targeted
+        - grub2-tools
+        - grub2-pc-modules
         - systemd
+        - tar
         - xfsprogs
         - xz
+        - qemu-img
       exclude: []
 
       # `osbuild` needs the packages fully solved for its manifests. This external

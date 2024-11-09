@@ -80,6 +80,11 @@ otk.target.osbuild:
           options:
             filename: disk.raw.xz
 
+    # One of the strengths of `osbuild` is its ability to have many pipelines for
+    # different outputs, lets include a qcow2 as well:
+    - otk.include: "../library/osbuild/pipelines/qcow2/generic.yaml"
+
+
   # osbuild needs all its sources explicitly referenced, these sources are
   # in this case the RPMs that constitute the build. They are generated during
   # the dependency solving of the packages.
