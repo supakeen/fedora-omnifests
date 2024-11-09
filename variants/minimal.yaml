@@ -63,7 +63,7 @@ otk.target.osbuild:
 
     # With the raw pipeline we take the previous system pipeline and put that
     # filesystem tree into a raw disk image
-    - otk.include: "../library/osbuild/pipelines/raw/${environment.architecture}/minimal.yaml"
+    - otk.include: "../library/osbuild/pipelines/raw/generic.yaml"
 
     # We can then take that raw pipeline and xz it
     - name: raw-xz
