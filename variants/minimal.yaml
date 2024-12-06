@@ -52,6 +52,11 @@ otk.define.kernel:
 # Each time we recompile this omnifest the target will be output with freshly
 # depsolved information.
 otk.target.osbuild:
+  # Store some metadata about what built this manifest
+  metadata:
+    generators:
+      - otk.external.osbuild-make-generator-metadata:
+
   pipelines:
     # The buildroot pipeline is shared amongst all images and is usually
     # architecture independent.
