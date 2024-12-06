@@ -20,10 +20,4 @@ jobs:
           podman pull ghcr.io/osbuild/otk:latest
       - name: Compile
         run: |
-          podman run  -v .:/app ghcr.io/osbuild/otk:latest compile -e environments/${{ matrix.architecture }}.yaml variants/${{ matrix.variant }}.yaml > ${{ matrix.architecture }}-${{ matrix.variant }}.manifest.json
-      - name: Upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.architecture }}-${{ matrix.variant }}.manifest.json
-          path: ${{ matrix.architecture }}-${{ matrix.variant }}.manifest.json
-          retention-days: 7
+          podman run  -v .:/app ghcr.io/osbuild/otk:latest validate -e environments/${{ matrix.architecture }}.yaml variants/${{ matrix.variant }}.yaml
