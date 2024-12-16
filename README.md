@@ -1,5 +1,8 @@
 # Fedora Omnifests
 
+> [!CAUTION]
+> These omnifests belong to [otk](https://github.com/osbuild/otk). We're currently not working on `otk` but the lessons learned in making it are being used to make our [image definitions](https://github.com/osbuild/images) declarative.
+
 This repository is used to manage the Fedora omnifests. Omnifests are the input
 format for [otk](https://github.com/osbuild/otk). `otk` compiles these omnifests
 to the inputs for image build tooling.
